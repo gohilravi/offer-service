@@ -1,0 +1,11 @@
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\bin\Debug\net8.0\OfferService.Domain.deps.json
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\bin\Debug\net8.0\OfferService.Domain.dll
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\bin\Debug\net8.0\OfferService.Domain.pdb
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\obj\Debug\net8.0\OfferService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\obj\Debug\net8.0\OfferService.Domain.AssemblyInfoInputs.cache
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\obj\Debug\net8.0\OfferService.Domain.AssemblyInfo.cs
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\obj\Debug\net8.0\OfferService.Domain.csproj.CoreCompileInputs.cache
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\obj\Debug\net8.0\OfferService.Domain.dll
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\obj\Debug\net8.0\refint\OfferService.Domain.dll
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\obj\Debug\net8.0\OfferService.Domain.pdb
+D:\AI Code Challenge\offer-service\src\OfferService.Domain\obj\Debug\net8.0\ref\OfferService.Domain.dll

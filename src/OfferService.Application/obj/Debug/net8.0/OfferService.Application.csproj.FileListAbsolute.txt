@@ -1,0 +1,15 @@
+D:\AI Code Challenge\offer-service\src\OfferService.Application\bin\Debug\net8.0\OfferService.Application.deps.json
+D:\AI Code Challenge\offer-service\src\OfferService.Application\bin\Debug\net8.0\OfferService.Application.dll
+D:\AI Code Challenge\offer-service\src\OfferService.Application\bin\Debug\net8.0\OfferService.Application.pdb
+D:\AI Code Challenge\offer-service\src\OfferService.Application\bin\Debug\net8.0\OfferService.Domain.dll
+D:\AI Code Challenge\offer-service\src\OfferService.Application\bin\Debug\net8.0\OfferService.Domain.pdb
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\OfferService.Application.csproj.AssemblyReference.cache
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\OfferService.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\OfferService.Application.AssemblyInfoInputs.cache
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\OfferService.Application.AssemblyInfo.cs
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\OfferService.Application.csproj.CoreCompileInputs.cache
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\OfferSer.E67E5791.Up2Date
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\OfferService.Application.dll
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\refint\OfferService.Application.dll
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\OfferService.Application.pdb
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\ref\OfferService.Application.dll

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OfferService.Api</name>
+    </assembly>
+    <members>
+        <member name="M:OfferService.Api.Controllers.OffersController.CreateOffer(OfferService.Application.DTOs.CreateOfferDto)">
+            <summary>
+            Create a new offer
+            </summary>
+            <param name="createOfferDto">Offer creation data</param>
+            <returns>Created offer</returns>
+        </member>
+        <member name="M:OfferService.Api.Controllers.OffersController.GetOfferById(System.Guid)">
+            <summary>
+            Get offer by ID
+            </summary>
+            <param name="id">Offer ID</param>
+            <returns>Offer details</returns>
+        </member>
+        <member name="M:OfferService.Api.Controllers.OffersController.GetOffers(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Get all offers with filtering, sorting, and pagination
+            </summary>
+            <param name="status">Filter by status (offered, assigned, canceled)</param>
+            <param name="createdAfter">Filter offers created after this date</param>
+            <param name="createdBefore">Filter offers created before this date</param>
+            <param name="sortBy">Sort field (createdAt, status, vehicleMake, vehicleModel)</param>
+            <param name="sortDescending">Sort direction (default: false)</param>
+            <param name="pageNumber">Page number (default: 1)</param>
+            <param name="pageSize">Page size (default: 10, max: 100)</param>
+            <returns>Paginated list of offers</returns>
+        </member>
+        <member name="M:OfferService.Api.Controllers.OffersController.UpdateOffer(System.Guid,OfferService.Application.DTOs.UpdateOfferDto)">
+            <summary>
+            Update an existing offer
+            </summary>
+            <param name="id">Offer ID</param>
+            <param name="updateOfferDto">Offer update data</param>
+            <returns>Updated offer</returns>
+        </member>
+        <member name="M:OfferService.Api.Controllers.OffersController.AssignOffer(System.Guid)">
+            <summary>
+            Assign an offer (creates purchase and transport, changes status to assigned)
+            </summary>
+            <param name="id">Offer ID</param>
+            <returns>Assigned offer</returns>
+        </member>
+        <member name="M:OfferService.Api.Controllers.OffersController.CancelOffer(System.Guid)">
+            <summary>
+            Cancel an offer (changes status to canceled)
+            </summary>
+            <param name="id">Offer ID</param>
+            <returns>Canceled offer</returns>
+        </member>
+        <member name="M:OfferService.Api.Controllers.SellersController.GetSellers(System.Int32,System.Int32)">
+            <summary>
+            Get all sellers with optional pagination
+            </summary>
+            <param name="pageNumber">Page number (default: 1)</param>
+            <param name="pageSize">Page size (default: 10, max: 100)</param>
+            <returns>Paginated list of sellers</returns>
+        </member>
+    </members>
+</doc>

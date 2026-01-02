@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "iB9G1DbgDwqK7C0/F5PZrix/UOakXm8kGs17cLD1TGY=",
+  "Source": "OfferService.Api",
+  "BasePath": "_content/OfferService.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
