@@ -13,3 +13,4 @@ D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0
 D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\refint\OfferService.Application.dll
 D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\OfferService.Application.pdb
 D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\ref\OfferService.Application.dll
+D:\AI Code Challenge\offer-service\src\OfferService.Application\obj\Debug\net8.0\OfferService.Application.sourcelink.json

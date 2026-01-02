@@ -29,7 +29,7 @@ public class SellersControllerTests
         {
             Sellers = new List<SellerDto>
             {
-                new() { SellerId = Guid.NewGuid(), Name = "Test Seller", Email = "test@example.com" }
+                new() { SellerId = 1, Name = "Test Seller", Email = "test@example.com" }
             },
             TotalCount = 1,
             Page = 1,

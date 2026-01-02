@@ -118,9 +118,6 @@ D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
-D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
-D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
-D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.dll
@@ -129,8 +126,6 @@ D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
-D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
-D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
@@ -153,3 +148,5 @@ D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\OfferService.Domain.pdb
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\OfferService.Infrastructure.pdb
 D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\OfferService.Api.xml
+D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\obj\Debug\net8.0\OfferService.UnitTests.sourcelink.json
+D:\AI Code Challenge\offer-service\tests\OfferService.UnitTests\bin\Debug\net8.0\appsettings.Production.json

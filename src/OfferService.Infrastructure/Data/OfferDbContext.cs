@@ -69,7 +69,6 @@ public class OfferDbContext : DbContext
                 .HasMaxLength(100);
                 
             entity.Property(e => e.Vin)
-                .IsRequired()
                 .HasMaxLength(17);
                 
             // Vehicle properties

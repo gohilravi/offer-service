@@ -4,6 +4,12 @@
         <name>OfferService.Api</name>
     </assembly>
     <members>
+        <member name="M:OfferService.Api.Controllers.HealthController.Get">
+            <summary>
+            Health check endpoint for container orchestration
+            </summary>
+            <returns>Health status of the service</returns>
+        </member>
         <member name="M:OfferService.Api.Controllers.OffersController.CreateOffer(OfferService.Application.DTOs.CreateOfferDto)">
             <summary>
             Create a new offer
@@ -11,7 +17,7 @@
             <param name="createOfferDto">Offer creation data</param>
             <returns>Created offer</returns>
         </member>
-        <member name="M:OfferService.Api.Controllers.OffersController.GetOfferById(System.Guid)">
+        <member name="M:OfferService.Api.Controllers.OffersController.GetOfferById(System.Int64)">
             <summary>
             Get offer by ID
             </summary>
@@ -31,7 +37,7 @@
             <param name="pageSize">Page size (default: 10, max: 100)</param>
             <returns>Paginated list of offers</returns>
         </member>
-        <member name="M:OfferService.Api.Controllers.OffersController.UpdateOffer(System.Guid,OfferService.Application.DTOs.UpdateOfferDto)">
+        <member name="M:OfferService.Api.Controllers.OffersController.UpdateOffer(System.Int64,OfferService.Application.DTOs.UpdateOfferDto)">
             <summary>
             Update an existing offer
             </summary>
@@ -39,14 +45,15 @@
             <param name="updateOfferDto">Offer update data</param>
             <returns>Updated offer</returns>
         </member>
-        <member name="M:OfferService.Api.Controllers.OffersController.AssignOffer(System.Guid)">
+        <member name="M:OfferService.Api.Controllers.OffersController.AssignOffer(System.Int64,OfferService.Application.DTOs.AssignOfferDto)">
             <summary>
             Assign an offer (creates purchase and transport, changes status to assigned)
             </summary>
             <param name="id">Offer ID</param>
+            <param name="assignOfferDto">Assignment data including BuyerId and CarrierId</param>
             <returns>Assigned offer</returns>
         </member>
-        <member name="M:OfferService.Api.Controllers.OffersController.CancelOffer(System.Guid)">
+        <member name="M:OfferService.Api.Controllers.OffersController.CancelOffer(System.Int64)">
             <summary>
             Cancel an offer (changes status to canceled)
             </summary>

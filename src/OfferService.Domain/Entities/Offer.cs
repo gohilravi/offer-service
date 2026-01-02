@@ -23,9 +23,8 @@ public class Offer
     public string SellerName { get; set; } = string.Empty;
     
     // Vehicle Identification Number
-    [Required]
     [MaxLength(17)]
-    public string Vin { get; set; } = string.Empty;
+    public string? Vin { get; set; }
     
     // Vehicle Information
     [Required]
@@ -64,6 +63,9 @@ public class Offer
     [Required]
     [MaxLength(20)]
     public string VehicleZipCode { get; set; } = string.Empty;
+    
+    [MaxLength(20)]
+    public string? BuyerZipCode { get; set; }
     
     // Ownership
     [MaxLength(100)]
@@ -129,6 +131,10 @@ public class Offer
     public Guid? PurchaseId { get; set; }
     
     public Guid? TransportId { get; set; }
+    
+    public int? BuyerId { get; set; }
+    
+    public int? CarrierId { get; set; }
     
     [Required]
     public Guid NoSQLIndexId { get; set; }

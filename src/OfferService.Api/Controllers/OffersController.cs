@@ -176,19 +176,25 @@ public class OffersController : ControllerBase
     /// Assign an offer (creates purchase and transport, changes status to assigned)
     /// </summary>
     /// <param name="id">Offer ID</param>
+    /// <param name="assignOfferDto">Assignment data including BuyerId and CarrierId</param>
     /// <returns>Assigned offer</returns>
     [HttpPost("{id:long}/assign")]
     [ProducesResponseType(typeof(OfferDto), 200)]
+    [ProducesResponseType(400)]
     [ProducesResponseType(404)]
     [ProducesResponseType(409)]
     [ProducesResponseType(500)]
-    public async Task<ActionResult<OfferDto>> AssignOffer(long id)
+    public async Task<ActionResult<OfferDto>> AssignOffer(long id, [FromBody] AssignOfferDto assignOfferDto)
     {
         try
         {
-            _logger.LogInformation("Assigning offer {OfferId}", id);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var result = await _offerService.AssignOfferAsync(id);
+            _logger.LogInformation("Assigning offer {OfferId} to buyer {BuyerId} and carrier {CarrierId}", 
+                id, assignOfferDto.BuyerId, assignOfferDto.CarrierId);
+
+            var result = await _offerService.AssignOfferAsync(id, assignOfferDto);
             return Ok(result);
         }
         catch (OfferNotFoundException ex)

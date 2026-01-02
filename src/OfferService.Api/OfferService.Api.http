@@ -4,3 +4,22 @@ GET {{OfferService.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+# Assign Offer with BuyerId and CarrierId (will call Purchase API at localhost:5001)
+POST {{OfferService.Api_HostAddress}}/api/offers/1/assign
+Content-Type: application/json
+
+{
+  "buyerId": 123,
+  "carrierId": 456,
+  "buyerZipCode": "67890"
+}
+
+### Note: This will make a POST request to http://localhost:5001/api/purchases with:
+### {
+###   "offerId": 1,
+###   "buyerId": 123
+### }
+### And a POST request to http://localhost:5002/api/transports with transport details
+
+###

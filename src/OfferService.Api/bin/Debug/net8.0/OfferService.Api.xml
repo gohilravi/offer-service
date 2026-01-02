@@ -45,11 +45,12 @@
             <param name="updateOfferDto">Offer update data</param>
             <returns>Updated offer</returns>
         </member>
-        <member name="M:OfferService.Api.Controllers.OffersController.AssignOffer(System.Int64)">
+        <member name="M:OfferService.Api.Controllers.OffersController.AssignOffer(System.Int64,OfferService.Application.DTOs.AssignOfferDto)">
             <summary>
             Assign an offer (creates purchase and transport, changes status to assigned)
             </summary>
             <param name="id">Offer ID</param>
+            <param name="assignOfferDto">Assignment data including BuyerId and CarrierId</param>
             <returns>Assigned offer</returns>
         </member>
         <member name="M:OfferService.Api.Controllers.OffersController.CancelOffer(System.Int64)">

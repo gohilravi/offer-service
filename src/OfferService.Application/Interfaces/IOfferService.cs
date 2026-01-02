@@ -15,16 +15,16 @@ public interface IOfferService
         int pageNumber = 1,
         int pageSize = 10);
     Task<OfferDto> UpdateOfferAsync(long offerId, UpdateOfferDto updateOfferDto);
-    Task<OfferDto> AssignOfferAsync(long offerId);
+    Task<OfferDto> AssignOfferAsync(long offerId, AssignOfferDto assignOfferDto);
     Task<OfferDto> CancelOfferAsync(long offerId);
 }
 
 public interface IPurchaseApiService
 {
-    Task<Guid> CreatePurchaseAsync(long offerId);
+    Task<Guid> CreatePurchaseAsync(long offerId, int buyerId);
 }
 
 public interface ITransportApiService
 {
-    Task<Guid> CreateTransportAsync(long offerId);
+    Task<Guid> CreateTransportAsync(CreateTransportDto createTransportDto);
 }

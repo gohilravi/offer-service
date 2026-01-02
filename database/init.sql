@@ -24,7 +24,7 @@ CREATE TABLE "Offers" (
     "SellerName" VARCHAR(100) NOT NULL,
     
     -- Vehicle Identification Number
-    "Vin" VARCHAR(17) NOT NULL,
+    "Vin" VARCHAR(17),
     
     -- Vehicle Information
     "VehicleYear" VARCHAR(50) NOT NULL,
@@ -40,6 +40,7 @@ CREATE TABLE "Offers" (
     
     -- Location
     "VehicleZipCode" VARCHAR(20) NOT NULL,
+    "BuyerZipCode" VARCHAR(20),
     
     -- Ownership
     "OwnershipType" VARCHAR(100),
@@ -69,6 +70,8 @@ CREATE TABLE "Offers" (
     "Status" VARCHAR(50) NOT NULL DEFAULT 'offered',
     "PurchaseId" UUID,
     "TransportId" UUID,
+    "BuyerId" INTEGER,
+    "CarrierId" INTEGER,
     "NoSQLIndexId" UUID NOT NULL DEFAULT gen_random_uuid(),
     "CreatedAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "LastModifiedAt" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,

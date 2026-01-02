@@ -125,7 +125,7 @@ public class OfferService : IOfferService
         return _mapper.Map<OfferDto>(offer);
     }
 
-    public async Task<OfferDto> AssignOfferAsync(long offerId)
+    public async Task<OfferDto> AssignOfferAsync(long offerId, AssignOfferDto assignOfferDto)
     {
         var offer = await _unitOfWork.Offers.GetByIdAsync(offerId);
         if (offer == null)
@@ -142,14 +142,37 @@ public class OfferService : IOfferService
         {
             await _unitOfWork.BeginTransactionAsync();
 
-            // Call external APIs
-            var purchaseId = await _purchaseApiService.CreatePurchaseAsync(offerId);
-            var transportId = await _transportApiService.CreateTransportAsync(offerId);
+            // Call external APIs with BuyerId and CarrierId
+            var purchaseId = await _purchaseApiService.CreatePurchaseAsync(offerId, assignOfferDto.BuyerId);
+            
+            // Create transport with detailed information
+            var createTransportDto = new CreateTransportDto
+            {
+                OfferId = offerId,
+                PurchaseId = purchaseId,
+                SellerId = offer.SellerId,
+                BuyerId = assignOfferDto.BuyerId,
+                CarrierId = assignOfferDto.CarrierId,
+                SellerZipCode = offer.VehicleZipCode,
+                BuyerZipCode = assignOfferDto.BuyerZipCode,
+                ScheduleWindow = new ScheduleWindowDto
+                {
+                    StartDate = DateTime.UtcNow.AddDays(1).Date.AddHours(10), // Next day 10 AM
+                    EndDate = DateTime.UtcNow.AddDays(1).Date.AddHours(18),   // Next day 6 PM
+                    ScheduledDate = DateTime.UtcNow.AddDays(1).Date.AddHours(14) // Next day 2 PM
+                },
+                ElasticSearchId = offer.NoSQLIndexId.ToString()
+            };
+            
+            var transportId = await _transportApiService.CreateTransportAsync(createTransportDto);
 
             // Update offer
             offer.Status = OfferStatus.Assigned;
             offer.PurchaseId = purchaseId;
             offer.TransportId = transportId;
+            offer.BuyerId = assignOfferDto.BuyerId;
+            offer.CarrierId = assignOfferDto.CarrierId;
+            offer.BuyerZipCode = assignOfferDto.BuyerZipCode;
             offer.LastModifiedAt = DateTime.UtcNow;
 
             offer = await _unitOfWork.Offers.UpdateAsync(offer);

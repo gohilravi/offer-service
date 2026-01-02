@@ -9,9 +9,8 @@ public class CreateOfferDto
     public int SellerId { get; set; }
     
     // Vehicle Identification Number
-    [Required]
     [MaxLength(17)]
-    public string Vin { get; set; } = string.Empty;
+    public string? Vin { get; set; }
     
     // Vehicle Information
     [Required]
@@ -123,6 +122,19 @@ public class UpdateOfferDto
     public string? AirbagsDeployed { get; set; }
 }
 
+public class AssignOfferDto
+{
+    [Required]
+    public int BuyerId { get; set; }
+    
+    [Required]
+    public int CarrierId { get; set; }
+    
+    [Required]
+    [MaxLength(20)]
+    public string BuyerZipCode { get; set; } = string.Empty;
+}
+
 public class OfferDto
 {
     public long OfferId { get; set; }
@@ -131,7 +143,7 @@ public class OfferDto
     public string SellerName { get; set; } = string.Empty;
     
     // Vehicle Identification Number
-    public string Vin { get; set; } = string.Empty;
+    public string? Vin { get; set; }
     
     // Vehicle Information
     public string VehicleYear { get; set; } = string.Empty;
@@ -147,6 +159,7 @@ public class OfferDto
     
     // Location
     public string VehicleZipCode { get; set; } = string.Empty;
+    public string? BuyerZipCode { get; set; }
     
     // Ownership
     public string OwnershipType { get; set; } = string.Empty;
@@ -176,6 +189,8 @@ public class OfferDto
     public string Status { get; set; } = string.Empty;
     public Guid? PurchaseId { get; set; }
     public Guid? TransportId { get; set; }
+    public int? BuyerId { get; set; }
+    public int? CarrierId { get; set; }
     public Guid NoSQLIndexId { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime LastModifiedAt { get; set; }

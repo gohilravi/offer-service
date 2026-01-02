@@ -17,3 +17,4 @@ D:\AI Code Challenge\offer-service\src\OfferService.Infrastructure\obj\Debug\net
 D:\AI Code Challenge\offer-service\src\OfferService.Infrastructure\obj\Debug\net8.0\OfferService.Infrastructure.pdb
 D:\AI Code Challenge\offer-service\src\OfferService.Infrastructure\obj\Debug\net8.0\OfferService.Infrastructure.genruntimeconfig.cache
 D:\AI Code Challenge\offer-service\src\OfferService.Infrastructure\obj\Debug\net8.0\ref\OfferService.Infrastructure.dll
+D:\AI Code Challenge\offer-service\src\OfferService.Infrastructure\obj\Debug\net8.0\OfferService.Infrastructure.sourcelink.json

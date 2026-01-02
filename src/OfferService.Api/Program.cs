@@ -53,8 +53,24 @@ builder.Services.AddScoped<ISellerService, SellerService>();
 builder.Services.AddScoped<IOfferService, OfferService.Application.Services.OfferService>();
 
 // External API Services
-builder.Services.AddHttpClient<IPurchaseApiService, PurchaseApiService>();
-builder.Services.AddHttpClient<ITransportApiService, TransportApiService>();
+builder.Services.AddHttpClient<IPurchaseApiService, PurchaseApiService>(client =>
+{
+    var purchaseConfig = builder.Configuration.GetSection("ExternalAPIs:PurchaseService");
+    var baseUrl = purchaseConfig["BaseUrl"] ?? "http://localhost:5001";
+    var timeout = purchaseConfig["Timeout"] ?? "00:00:30";
+    
+    client.BaseAddress = new Uri(baseUrl);
+    client.Timeout = TimeSpan.Parse(timeout);
+});
+builder.Services.AddHttpClient<ITransportApiService, TransportApiService>(client =>
+{
+    var transportConfig = builder.Configuration.GetSection("ExternalAPIs:TransportService");
+    var baseUrl = transportConfig["BaseUrl"] ?? "http://localhost:5002";
+    var timeout = transportConfig["Timeout"] ?? "00:00:30";
+    
+    client.BaseAddress = new Uri(baseUrl);
+    client.Timeout = TimeSpan.Parse(timeout);
+});
 
 // MassTransit Configuration
 builder.Services.AddMassTransit(x =>

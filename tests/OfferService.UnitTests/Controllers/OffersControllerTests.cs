@@ -30,9 +30,8 @@ public class OffersControllerTests
         // Arrange
         var createDto = new CreateOfferDto
         {
-            SellerId = Guid.NewGuid(),
-            SellerNetworkId = "NETWORK001",
-            SellerName = "Test Seller",
+            SellerId = 1,
+            Vin = "1HGCM82633A123456",
             VehicleYear = "2020",
             VehicleMake = "Toyota",
             VehicleModel = "Camry",
@@ -41,7 +40,7 @@ public class OffersControllerTests
 
         var offerDto = new OfferDto
         {
-            OfferId = Guid.NewGuid(),
+            OfferId = 1,
             SellerId = createDto.SellerId,
             Status = "offered"
         };
@@ -62,7 +61,7 @@ public class OffersControllerTests
     public async Task CreateOffer_SellerNotFound_ReturnsNotFound()
     {
         // Arrange
-        var createDto = new CreateOfferDto { SellerId = Guid.NewGuid() };
+        var createDto = new CreateOfferDto { SellerId = 1 };
         
         _mockOfferService.Setup(s => s.CreateOfferAsync(createDto))
             .ThrowsAsync(new SellerNotFoundException(createDto.SellerId));
@@ -78,7 +77,7 @@ public class OffersControllerTests
     public async Task CreateOffer_ServiceException_ReturnsInternalServerError()
     {
         // Arrange
-        var createDto = new CreateOfferDto { SellerId = Guid.NewGuid() };
+        var createDto = new CreateOfferDto { SellerId = 1 };
         
         _mockOfferService.Setup(s => s.CreateOfferAsync(createDto))
             .ThrowsAsync(new Exception("Service error"));
@@ -100,7 +99,7 @@ public class OffersControllerTests
     public async Task GetOfferById_ExistingId_ReturnsOk()
     {
         // Arrange
-        var offerId = Guid.NewGuid();
+        var offerId = 1L;
         var offerDto = new OfferDto { OfferId = offerId };
 
         _mockOfferService.Setup(s => s.GetOfferByIdAsync(offerId))
@@ -119,7 +118,7 @@ public class OffersControllerTests
     public async Task GetOfferById_NonExistingId_ReturnsNotFound()
     {
         // Arrange
-        var offerId = Guid.NewGuid();
+        var offerId = 1L;
         
         _mockOfferService.Setup(s => s.GetOfferByIdAsync(offerId))
             .ThrowsAsync(new OfferNotFoundException(offerId));
@@ -141,7 +140,7 @@ public class OffersControllerTests
         // Arrange
         var paginatedOffers = new PaginatedOffersDto
         {
-            Offers = new List<OfferDto> { new() { OfferId = Guid.NewGuid() } },
+            Offers = new List<OfferDto> { new() { OfferId = 1L } },
             TotalCount = 1,
             Page = 1,
             PageSize = 10
@@ -176,7 +175,7 @@ public class OffersControllerTests
     public async Task UpdateOffer_ValidUpdate_ReturnsOk()
     {
         // Arrange
-        var offerId = Guid.NewGuid();
+        var offerId = 1L;
         var updateDto = new UpdateOfferDto { VehicleYear = "2021" };
         var updatedOffer = new OfferDto { OfferId = offerId };
 
@@ -194,7 +193,7 @@ public class OffersControllerTests
     public async Task UpdateOffer_OfferNotFound_ReturnsNotFound()
     {
         // Arrange
-        var offerId = Guid.NewGuid();
+        var offerId = 1L;
         var updateDto = new UpdateOfferDto();
 
         _mockOfferService.Setup(s => s.UpdateOfferAsync(offerId, updateDto))
@@ -211,7 +210,7 @@ public class OffersControllerTests
     public async Task UpdateOffer_CannotBeUpdated_ReturnsConflict()
     {
         // Arrange
-        var offerId = Guid.NewGuid();
+        var offerId = 1L;
         var updateDto = new UpdateOfferDto();
 
         _mockOfferService.Setup(s => s.UpdateOfferAsync(offerId, updateDto))
@@ -232,33 +231,38 @@ public class OffersControllerTests
     public async Task AssignOffer_ValidOffer_ReturnsOk()
     {
         // Arrange
-        var offerId = Guid.NewGuid();
-        var assignedOffer = new OfferDto { OfferId = offerId, Status = "assigned" };
+        var offerId = 1L;
+        var assignOfferDto = new AssignOfferDto { BuyerId = 123, CarrierId = 456, BuyerZipCode = "67890" };
+        var assignedOffer = new OfferDto { OfferId = offerId, Status = "assigned", BuyerId = 123, CarrierId = 456, BuyerZipCode = "67890" };
 
-        _mockOfferService.Setup(s => s.AssignOfferAsync(offerId))
+        _mockOfferService.Setup(s => s.AssignOfferAsync(offerId, assignOfferDto))
             .ReturnsAsync(assignedOffer);
 
         // Act
-        var result = await _controller.AssignOffer(offerId);
+        var result = await _controller.AssignOffer(offerId, assignOfferDto);
 
         // Assert
         result.Result.Should().BeOfType<OkObjectResult>();
         var okResult = result.Result as OkObjectResult;
         var resultOffer = okResult!.Value as OfferDto;
         resultOffer!.Status.Should().Be("assigned");
+        resultOffer.BuyerId.Should().Be(123);
+        resultOffer.CarrierId.Should().Be(456);
+        resultOffer.BuyerZipCode.Should().Be("67890");
     }
 
     [Fact]
     public async Task AssignOffer_InvalidStateTransition_ReturnsConflict()
     {
         // Arrange
-        var offerId = Guid.NewGuid();
+        var offerId = 1L;
+        var assignOfferDto = new AssignOfferDto { BuyerId = 123, CarrierId = 456, BuyerZipCode = "67890" };
 
-        _mockOfferService.Setup(s => s.AssignOfferAsync(offerId))
+        _mockOfferService.Setup(s => s.AssignOfferAsync(offerId, assignOfferDto))
             .ThrowsAsync(new InvalidOfferStateTransitionException("canceled", "assigned"));
 
         // Act
-        var result = await _controller.AssignOffer(offerId);
+        var result = await _controller.AssignOffer(offerId, assignOfferDto);
 
         // Assert
         result.Result.Should().BeOfType<ConflictObjectResult>();
@@ -272,7 +276,7 @@ public class OffersControllerTests
     public async Task CancelOffer_ValidOffer_ReturnsOk()
     {
         // Arrange
-        var offerId = Guid.NewGuid();
+        var offerId = 1L;
         var canceledOffer = new OfferDto { OfferId = offerId, Status = "canceled" };
 
         _mockOfferService.Setup(s => s.CancelOfferAsync(offerId))
@@ -292,7 +296,7 @@ public class OffersControllerTests
     public async Task CancelOffer_AlreadyCanceled_ReturnsConflict()
     {
         // Arrange
-        var offerId = Guid.NewGuid();
+        var offerId = 1L;
 
         _mockOfferService.Setup(s => s.CancelOfferAsync(offerId))
             .ThrowsAsync(new InvalidOfferStateTransitionException("canceled", "canceled"));
