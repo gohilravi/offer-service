@@ -128,9 +128,9 @@ public class Offer
     [MaxLength(50)]
     public string Status { get; set; } = "offered";
     
-    public Guid? PurchaseId { get; set; }
+    public long? PurchaseId { get; set; }
     
-    public Guid? TransportId { get; set; }
+    public long? TransportId { get; set; }
     
     public int? BuyerId { get; set; }
     

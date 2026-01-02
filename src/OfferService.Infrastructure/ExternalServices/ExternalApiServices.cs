@@ -17,7 +17,7 @@ public class PurchaseApiService : IPurchaseApiService
         _logger = logger;
     }
 
-    public async Task<Guid> CreatePurchaseAsync(long offerId, int buyerId)
+    public async Task<long> CreatePurchaseAsync(long offerId, int buyerId)
     {
         try
         {
@@ -26,30 +26,40 @@ public class PurchaseApiService : IPurchaseApiService
             var request = new CreatePurchaseRequestDto
             {
                 OfferId = offerId,
-                BuyerId = buyerId
+                BuyerId = buyerId,
+                ElasticSearchId = offerId.ToString()
             };
             
             var json = JsonSerializer.Serialize(request, new JsonSerializerOptions
             {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
             });
             
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             
-            var response = await _httpClient.PostAsync("http://localhost:5000/purchases", content);
+            var response = await _httpClient.PostAsync("http://localhost:5003/purchases", content);
             
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
-                var purchaseResponse = JsonSerializer.Deserialize<CreatePurchaseResponseDto>(responseContent, new JsonSerializerOptions
+                var purchaseResponse = JsonSerializer.Deserialize<PurchaseApiResponseDto>(responseContent, new JsonSerializerOptions
                 {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
                 });
                 
-                var purchaseId = purchaseResponse?.PurchaseId ?? Guid.NewGuid();
-                _logger.LogInformation("Created purchase {PurchaseId} for offer {OfferId}", purchaseId, offerId);
-                
-                return purchaseId;
+                if (purchaseResponse?.Success == true)
+                {
+                    var purchaseId = purchaseResponse.Data?.PurchaseId ?? 0;
+                    _logger.LogInformation("Created purchase {PurchaseId} for offer {OfferId}", purchaseId, offerId);
+                    
+                    return purchaseId;
+                }
+                else
+                {
+                    var errorMessage = purchaseResponse?.Message ?? "Unknown error";
+                    _logger.LogError("Purchase API returned error: {ErrorMessage}", errorMessage);
+                    throw new HttpRequestException($"Purchase API error: {errorMessage}");
+                }
             }
             else
             {
@@ -83,7 +93,7 @@ public class TransportApiService : ITransportApiService
         _logger = logger;
     }
 
-    public async Task<Guid> CreateTransportAsync(CreateTransportDto createTransportDto)
+    public async Task<long> CreateTransportAsync(CreateTransportDto createTransportDto)
     {
         try
         {
@@ -97,17 +107,17 @@ public class TransportApiService : ITransportApiService
             
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             
-            var response = await _httpClient.PostAsync("http://localhost:5002/api/transports", content);
+            var response = await _httpClient.PostAsync("http://localhost:5005/api/transport", content);
             
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
-                var transportResponse = JsonSerializer.Deserialize<CreateTransportResponseDto>(responseContent, new JsonSerializerOptions
+                var transportResponse = JsonSerializer.Deserialize<TransportApiResponseDto>(responseContent, new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 });
                 
-                var transportId = transportResponse?.TransportId ?? Guid.NewGuid();
+                var transportId = transportResponse?.Id ?? 0;
                 _logger.LogInformation("Created transport {TransportId} for offer {OfferId} with purchase {PurchaseId}", 
                     transportId, createTransportDto.OfferId, createTransportDto.PurchaseId);
                 

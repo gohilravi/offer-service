@@ -129,11 +129,7 @@ public class AssignOfferDto
     
     [Required]
     public int CarrierId { get; set; }
-    
-    [Required]
-    [MaxLength(20)]
-    public string BuyerZipCode { get; set; } = string.Empty;
-}
+   }
 
 public class OfferDto
 {
@@ -187,8 +183,8 @@ public class OfferDto
     
     // Meta
     public string Status { get; set; } = string.Empty;
-    public Guid? PurchaseId { get; set; }
-    public Guid? TransportId { get; set; }
+    public long? PurchaseId { get; set; }
+    public long? TransportId { get; set; }
     public int? BuyerId { get; set; }
     public int? CarrierId { get; set; }
     public Guid NoSQLIndexId { get; set; }

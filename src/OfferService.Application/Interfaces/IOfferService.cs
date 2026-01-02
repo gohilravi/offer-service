@@ -21,10 +21,10 @@ public interface IOfferService
 
 public interface IPurchaseApiService
 {
-    Task<Guid> CreatePurchaseAsync(long offerId, int buyerId);
+    Task<long> CreatePurchaseAsync(long offerId, int buyerId);
 }
 
 public interface ITransportApiService
 {
-    Task<Guid> CreateTransportAsync(CreateTransportDto createTransportDto);
+    Task<long> CreateTransportAsync(CreateTransportDto createTransportDto);
 }

@@ -20,7 +20,7 @@ public class CreateTransportDto
     public long OfferId { get; set; }
     
     [Required]
-    public Guid PurchaseId { get; set; }
+    public long PurchaseId { get; set; }
     
     [Required]
     public int SellerId { get; set; }
@@ -49,10 +49,15 @@ public class CreateTransportDto
 
 public class CreateTransportResponseDto
 {
-    public Guid TransportId { get; set; }
+    public long TransportId { get; set; }
     public long OfferId { get; set; }
-    public Guid PurchaseId { get; set; }
+    public long PurchaseId { get; set; }
     public int CarrierId { get; set; }
     public string Status { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
+}
+
+public class TransportApiResponseDto
+{
+    public long Id { get; set; }
 }

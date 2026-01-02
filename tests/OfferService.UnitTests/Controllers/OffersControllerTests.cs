@@ -232,8 +232,8 @@ public class OffersControllerTests
     {
         // Arrange
         var offerId = 1L;
-        var assignOfferDto = new AssignOfferDto { BuyerId = 123, CarrierId = 456, BuyerZipCode = "67890" };
-        var assignedOffer = new OfferDto { OfferId = offerId, Status = "assigned", BuyerId = 123, CarrierId = 456, BuyerZipCode = "67890" };
+        var assignOfferDto = new AssignOfferDto { BuyerId = 123, CarrierId = 456 };
+        var assignedOffer = new OfferDto { OfferId = offerId, Status = "assigned", BuyerId = 123, CarrierId = 456 };
 
         _mockOfferService.Setup(s => s.AssignOfferAsync(offerId, assignOfferDto))
             .ReturnsAsync(assignedOffer);
@@ -248,7 +248,6 @@ public class OffersControllerTests
         resultOffer!.Status.Should().Be("assigned");
         resultOffer.BuyerId.Should().Be(123);
         resultOffer.CarrierId.Should().Be(456);
-        resultOffer.BuyerZipCode.Should().Be("67890");
     }
 
     [Fact]
@@ -256,7 +255,7 @@ public class OffersControllerTests
     {
         // Arrange
         var offerId = 1L;
-        var assignOfferDto = new AssignOfferDto { BuyerId = 123, CarrierId = 456, BuyerZipCode = "67890" };
+        var assignOfferDto = new AssignOfferDto { BuyerId = 123, CarrierId = 456 };
 
         _mockOfferService.Setup(s => s.AssignOfferAsync(offerId, assignOfferDto))
             .ThrowsAsync(new InvalidOfferStateTransitionException("canceled", "assigned"));
